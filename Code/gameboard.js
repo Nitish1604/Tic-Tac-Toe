@@ -1,17 +1,20 @@
-let playerX = localStorage.getItem('playerX');
-let playerO = localStorage.getItem('playerO');
-let playerXScore = localStorage.getItem('playerXScore');
-let playerOScore = localStorage.getItem('playerOScore');
+let playerX = localStorage.getItem("playerX");
+let playerO = localStorage.getItem("playerO");
+let playerXScore = localStorage.getItem("playerXScore");
+let playerOScore = localStorage.getItem("playerOScore");
 
-const setScoreBoard = () => {
-	document.querySelector('.scoreboard').innerHTML = 
-	`
-		<p class="score">${playerX} - ${playerXScore}</p>
-		<p class="score">${playerO} - ${playerOScore}</p>
-	`
-}
+const scoreBoard = () => {
+  let playerx = localStorage.getItem("playerX");
+  let playero = localStorage.getItem("playerO");
+  let playerxScore = localStorage.getItem("playerXScore");
+  let playeroScore = localStorage.getItem("playerOScore");
+  document.querySelector(".scoreboard").innerHTML = `
+  <p class="score" id="p1">${playerx} : ${playerxScore}</p> 
+  <p class="score" id="p2">${playero} : ${playeroScore}</p>
+  `;
+};
 
-setScoreBoard();
+scoreBoard();
 
 let turn = "playerX";
 const setTurn = turn => {
@@ -53,8 +56,9 @@ const checkWin = () => {
 		let playerXScore = localStorage.getItem('playerXScore');
 		playerXScore = parseInt(playerXScore) + 1;
 		localStorage.setItem('playerXScore', playerXScore);
-		setScoreBoard();
-		alert('Player X Wins!!');
+		scoreBoard();
+		swal('Player X Wins!!', 'Game Over, it will be reset in 5 seconds', "success");
+    setTimeout(reset, 5000);
 	}
 	
 	else if(
@@ -67,11 +71,12 @@ const checkWin = () => {
 		box2 == 'O' && box5 == 'O' && box8 == 'O'||
 		box3 == 'O' && box6 == 'O' && box9 == 'O'
 	) {
-		let playerOScOre = localStorage.getItem('playerOScore');
-		playerOScOre = parseInt(playerOScOre) + 1;
-		localStorage.setItem('playerOScore', playerOScOre);
-		setScoreBoard();
-		alert('Player O Wins!!')
+		let playerOScore = localStorage.getItem('playerOScore');
+		playerOScore = parseInt(playerOScore) + 1;
+		localStorage.setItem('playerOScore', playerOScore);
+		scoreBoard();
+		swal('Player O Wins!!', 'Game Over, it will be reset in 5 seconds', "success");
+    setTimeout(reset, 5000);
 	}
 	
 	else if(
@@ -79,8 +84,9 @@ const checkWin = () => {
 		box4 != "" && box5 != "" && box6 != "" &&
 		box7 != "" && box8 != "" && box9 != "" 
 	) {
-		//swal('Match Draw');
-		alert('Match Draw');
+		swal('Match Draw', 'Game Over, it will be reset in 5 seconds', 'success');
+		// alert('Match Draw');
+    setTimeout(reset, 5000);
 	}
 	
 }
@@ -90,10 +96,12 @@ const showXO = (boxid) => {
 	
 	if(turn == "playerX" && box.innerHTML == ""){
 		box.innerHTML = 'X';
+    box.style.color = 'blue';
 		turn = "playerO";
 		setTurn(turn);
 	} else if(turn == "playerO" && box.innerHTML == ""){
 		box.innerHTML = 'O';
+    box.style.color = 'red';
 		turn = "playerX";
 		setTurn(turn);
 	}
@@ -102,4 +110,14 @@ const showXO = (boxid) => {
 const btnpressed = async (boxid) => {
 	await showXO(boxid);
 	checkWin();
+}
+
+const quit = () => {
+  if(turn == 'playerX') alert(`${playerO} Wins!!`)
+  else alert(`${playerX} Wins!!`)
+  window.location="index.html";
+}
+
+const reset = () => {
+  window.location="gameboard.html";
 }
