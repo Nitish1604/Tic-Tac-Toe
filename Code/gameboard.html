@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="gameboard.css" />
+  </head>
+  <body>
+    <div class="scoreboard">
+      <p class="score" id="p1"></p>
+      <p class="score" id="p2"></p>
+    </div>
+    <h1>TURN - Nitish X</h1>
+    <div class="gameboard">
+      <div class="gameboardrow">
+        <div class="boxes" id="box1" onclick="btnpressed('box1')"></div>
+        <div class="vr"></div>
+        <div class="boxes" id="box2" onclick="btnpressed('box2')"></div>
+        <div class="vr"></div>
+        <div class="boxes" id="box3" onclick="btnpressed('box3')"></div>
+      </div>
+      <div class="hr"></div>
+      <div class="gameboardrow">
+        <div class="boxes" id="box4" onclick="btnpressed('box4')"></div>
+        <div class="vr"></div>
+        <div class="boxes" id="box5" onclick="btnpressed('box5')"></div>
+        <div class="vr"></div>
+        <div class="boxes" id="box6" onclick="btnpressed('box6')"></div>
+      </div>
+      <div class="hr"></div>
+      <div class="gameboardrow">
+        <div class="boxes" id="box7" onclick="btnpressed('box7')"></div>
+        <div class="vr"></div>
+        <div class="boxes" id="box8" onclick="btnpressed('box8')"></div>
+        <div class="vr"></div>
+        <div class="boxes" id="box9" onclick="btnpressed('box9')"></div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn" id="quit" onclick="quit()">Quit</button>
+      <button class="btn" id="reset" onclick="reset()">Reset</button>
+    </div>
+
+    <script src="gameboard.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </body>
+</html>
